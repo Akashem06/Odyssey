@@ -1,7 +1,5 @@
 # SConstruct
 import os
-# SConstruct
-import os
 
 ###########################################################
 # Common FLAGS for Compilation
@@ -13,6 +11,7 @@ common_flags = [
     '-Werror',
     '-Isrc',
     '-Iinc',
+    '-Ilibs/googeletest/googletest/include',
     '-DTEST'
 ]
 
@@ -36,6 +35,8 @@ cppflags = [
 # Environment Setup
 ###########################################################
 
+libs_abs_path = os.path.abspath('libs/googletest/build/lib/')
+
 env = Environment(
     ENV={ 'PATH': os.environ['PATH'] },
     CC='gcc',
@@ -43,7 +44,7 @@ env = Environment(
     CXXFLAGS=common_flags + cppflags,
     CCFLAGS=common_flags + cflags,
     LIBS=['gmock', 'gtest'],
-    LIBPATH=['/usr/src/googletest/lib']
+    LIBPATH=[libs_abs_path]
 )
 
 ###########################################################

@@ -16,12 +16,16 @@ HPPFILES = glob.glob(f'{ROOT}/**/*.hpp', recursive=True)
 objs = []
 
 for file in CFILES:
-    obj = c_env.Object(target=f'{ROOT}/build/objs/{File(file).name[:-2]}.o', source=file)
-    objs.append(obj)
+    if 'libs/googletest' not in file:
+        print(file)
+        obj = c_env.Object(target=f'{ROOT}/build/objs/{File(file).name[:-2]}.o', source=file)
+        objs.append(obj)
 
 for file in CPPFILES:
-    obj = cpp_env.Object(target=f'{ROOT}/build/objs/{File(file).name[:-4]}.o', source=file)
-    objs.append(obj)
+    if 'libs/googletest' not in file:
+        print(file)
+        obj = cpp_env.Object(target=f'{ROOT}/build/objs/{File(file).name[:-4]}.o', source=file)
+        objs.append(obj)
 
 
 # Generate the binary in the build/bin directory
