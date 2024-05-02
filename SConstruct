@@ -12,7 +12,7 @@ common_flags = [
     '-pthread',
     '-Isrc',
     '-Iinc',
-    '-Ilibs/googeletest/googletest/include',
+    '-Ilibs/googletest/googletest/include',
     '-DTEST'
 ]
 
