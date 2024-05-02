@@ -9,6 +9,7 @@ common_flags = [
     '-Wall',
     '-Wextra',
     '-Werror',
+    '-pthread',
     '-Isrc',
     '-Iinc',
     '-Ilibs/googeletest/googletest/include',
@@ -35,7 +36,7 @@ cppflags = [
 # Environment Setup
 ###########################################################
 
-libs_abs_path = os.path.abspath('libs/googletest/build/lib/')
+libs_abs_path = os.path.abspath('libs/googletest/build/lib')
 
 env = Environment(
     ENV={ 'PATH': os.environ['PATH'] },
@@ -43,8 +44,8 @@ env = Environment(
     CXX='g++',
     CXXFLAGS=common_flags + cppflags,
     CCFLAGS=common_flags + cflags,
-    LIBS=['gmock', 'gtest'],
-    LIBPATH=[libs_abs_path]
+    LIBS=['gtest'],
+    LIBPATH=[]
 )
 
 ###########################################################
