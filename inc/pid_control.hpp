@@ -12,7 +12,7 @@ class PIDController {
         double pid_max_output, pid_min_output;
         double pid_output;
     public:
-        PIDController(double kp, double ki, double kd) : kp(kp), ki(ki), kd(kd), prev_error(0), integral(0) {}
+        PIDController(double kp, double ki, double kd, double pid_max_output, double pid_min_output);
         OdysseyStatus pid_controller_init(PIDController *pid);
         OdysseyStatus pid_controller_update(PIDController *pid, double set_point, double measurement);
 };
