@@ -6,7 +6,7 @@ Import('env')
 ROOT = Dir('#')
 
 c_env = env.Clone(CCFLAGS=['-std=c99'])
-cpp_env = env.Clone(CXXFLAGS=['-std=c++11'])
+cpp_env = env.Clone(CXXFLAGS=['-std=c++14'])
 
 CFILES = glob.glob(f'{ROOT}/**/*.c', recursive=True)
 CPPFILES = glob.glob(f'{ROOT}/**/*.cpp', recursive=True)

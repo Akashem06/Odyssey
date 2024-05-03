@@ -12,8 +12,7 @@ common_flags = [
     '-pthread',
     '-Isrc',
     '-Iinc',
-    '-Ilibs/googletest/googletest/include',
-    '-DTEST'
+    '-Ilibs/googletest/googletest/include'
 ]
 
 ###########################################################
@@ -45,7 +44,7 @@ env = Environment(
     CXXFLAGS=common_flags + cppflags,
     CCFLAGS=common_flags + cflags,
     LIBS=['gtest'],
-    LIBPATH=[]
+    LIBPATH=[libs_abs_path]
 )
 
 ###########################################################
