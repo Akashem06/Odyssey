@@ -3,5 +3,5 @@
 TEST(ExampleTest, Addition) {
     int result = 2 + 2;
 
-    EXPECT_EQ(result, 5);
+    EXPECT_EQ(result, 4);
 }

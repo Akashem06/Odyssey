@@ -56,14 +56,11 @@ COMMAND = COMMAND_LINE_TARGETS[0] if COMMAND_LINE_TARGETS else ''
 if COMMAND == 'build':
     SConscript('scons/build.scons', exports={'env': env})
 
-elif COMMAND == 'test':
-    SConscript('scons/test.scons', exports={'env': env})
-
 elif COMMAND == 'clean':
     AlwaysBuild(Command('#/clean', [], 'rm -rf build/*'))
 
-elif COMMAND == 'format' or COMMAND == 'lint':
-    SConscript('scons/format_lint.scons', exports={'env': env})
+elif COMMAND == 'format' or COMMAND == 'lint' or COMMAND == 'test':
+    SConscript('scons/ci_tests.scons', exports={'env': env})
 
 else: # Unknown command
     SConscript('scons/build.scons', exports={'env': env})
@@ -82,4 +79,5 @@ Options:
   --format        Format the code
   --lint          Run linting on the code
   --build         Build the project
+  --test          Run Google Tests
 ''')

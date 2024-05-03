@@ -2,6 +2,7 @@ import subprocess
 import glob
 
 Import('env')
+ROOT = Dir('#')
 
 def run_format(target, source, env):
     clang_format_cmd = 'clang-format -i'
@@ -22,6 +23,9 @@ def run_lint(target, source, env):
     print(f'Running Cppcheck\n')
     subprocess.run(f'cppcheck {CFILES_STR} {SUPPRESSIONS} {BASE_ARGS} {HEADER_FILES}', shell=True)
 
+def run_tests(target, source, env):
+    subprocess.run([f'{ROOT}/build/bin/sensor_vortex'], check=True)
+
 ROOT = Dir('#')
 CFILES = glob.glob(f'{ROOT}/**/*.[ch]', recursive=True)
 CPP_FILES = glob.glob(f'{ROOT}/**/*.cpp', recursive=True)
@@ -35,3 +39,4 @@ HEADER_FILES = ' '.join([hfile for hfile in HEADER_FILES if 'libs/googletest' no
 
 Command('#/lint', [], run_lint)
 Command('#/format', [], run_format)
+Command('#/test', [], run_tests)
