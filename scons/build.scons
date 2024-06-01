@@ -30,4 +30,4 @@ for file in CPPFILES:
 
 
 # Generate the binary in the build/bin directory
-binary = env.Program(target=f'{ROOT}/build/bin/sensor_vortex', source=objs)
+binary = env.Program(target=f'{ROOT}/build/bin/odyssey', source=objs)

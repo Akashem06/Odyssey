@@ -12,7 +12,8 @@ common_flags = [
     '-pthread',
     '-Isrc',
     '-Iinc',
-    '-Ilibs/googletest/googletest/include'
+    '-Ilibs/googletest/googletest/include',
+    '-Ilibs/googletest/googlemock/include'
 ]
 
 ###########################################################
@@ -43,7 +44,7 @@ env = Environment(
     CXX='g++',
     CXXFLAGS=common_flags + cppflags,
     CCFLAGS=common_flags + cflags,
-    LIBS=['gtest'],
+    LIBS=['gtest', 'gmock'],
     LIBPATH=[libs_abs_path]
 )
 

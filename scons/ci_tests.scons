@@ -24,7 +24,7 @@ def run_lint(target, source, env):
     subprocess.run(f'cppcheck {CFILES_STR} {SUPPRESSIONS} {BASE_ARGS} {HEADER_FILES}', shell=True)
 
 def run_tests(target, source, env):
-    subprocess.run([f'{ROOT}/build/bin/sensor_vortex'], check=True)
+    subprocess.run([f'{ROOT}/build/bin/odyssey'], check=True)
 
 ROOT = Dir('#')
 CFILES = glob.glob(f'{ROOT}/**/*.[ch]', recursive=True)
