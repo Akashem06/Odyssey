@@ -25,9 +25,7 @@ class CircularBuffer {
          * @brief FIFO Circular buffer
          * @param capacity size of the circular buffer
         */
-        CircularBuffer(size_t capacity) : head(0), tail(0), count(0), capacity(capacity), stop_flag(false) {
-            buffer.resize(capacity);
-        };
+        explicit CircularBuffer(size_t capacity) : buffer(capacity), head(0), tail(0), count(0), capacity(capacity), stop_flag(false) {};
         
         /**
          * @brief Adds value to the tail of the list

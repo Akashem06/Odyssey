@@ -1,6 +1,6 @@
 #include "sensor_aggregator.hpp"
 
-void SensorDataAggregator::sensor_task(Sensor *sensor) {
+void SensorDataAggregator::sensor_task(Sensor* sensor) {
     while (!stop_flag) {
         float data = sensor->read_data();
         try {
@@ -27,18 +27,14 @@ void SensorDataAggregator::process_data_task() {
     }
 }
 
-void SensorDataAggregator::add_sensor(Sensor* sensor) {
-    threads_queue.emplace_back(&SensorDataAggregator::sensor_task, this, sensor);
-}
+void SensorDataAggregator::add_sensor(Sensor* sensor) { threads_queue.emplace_back(&SensorDataAggregator::sensor_task, this, sensor); }
 
-void SensorDataAggregator::start() {
-    processing_thread = std::thread(&SensorDataAggregator::process_data_task, this);
-}
-    
+void SensorDataAggregator::start() { processing_thread = std::thread(&SensorDataAggregator::process_data_task, this); }
+
 void SensorDataAggregator::stop() {
     stop_flag = true;
     data_queue.stop();
-    for (std::thread &thread : threads_queue) {
+    for (std::thread& thread : threads_queue) {
         if (thread.joinable()) {
             thread.join();
         }

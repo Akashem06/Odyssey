@@ -1,5 +1,5 @@
-#include "gtest/gtest.h"
 #include "circular_buffer.hpp"
+#include "gtest/gtest.h"
 
 // Test enqueue and dequeue operations
 TEST(CircularBufferQueueTest, Enqueue_Dequeue) {
@@ -23,7 +23,7 @@ TEST(CircularBufferQueueTest, Enqueue_Dequeue) {
 // Test peek operation
 TEST(CircularBufferQueueTest, Peek) {
     CircularBuffer<int> queue(5);
-    
+
     queue.enqueue(100);
     queue.enqueue(200);
     queue.enqueue(300);

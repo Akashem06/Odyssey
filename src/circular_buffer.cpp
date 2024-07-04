@@ -8,14 +8,14 @@ void CircularBuffer<T>::enqueue(T value) {
     // Waits for condition variable to be notified and count < capacity, and then locks mutex
     cv_not_full.wait(lock, [this] { return count < capacity || stop_flag; });
 
-    if(stop_flag || count >= capacity) {
+    if (stop_flag || count >= capacity) {
         throw std::runtime_error("Queue is full or stopped");
     }
-    
+
     buffer[tail] = value;
     tail = (tail + 1) % capacity;
     count++;
-    
+
     // Allows one dequeue thread to run
     cv_not_empty.notify_one();
 }
@@ -43,13 +43,13 @@ T CircularBuffer<T>::dequeue() {
 
 template <typename T>
 T CircularBuffer<T>::peek(size_t index) {
-    std::lock_guard<std::mutex> lock(mtx); // Acquire mutex lock
+    std::lock_guard<std::mutex> lock(mtx);  // Acquire mutex lock
 
     if (index >= count) {
         throw std::out_of_range("Index out of range");
     }
 
-    return buffer[ (head + index) % capacity];
+    return buffer[(head + index) % capacity];
 }
 
 template <typename T>
@@ -59,8 +59,8 @@ void CircularBuffer<T>::stop() {
         std::lock_guard<std::mutex> lock(mtx);
         stop_flag = true;
     }
-    cv_not_empty.notify_all(); // Notify all waiting threads
-    cv_not_full.notify_all(); // Notify all waiting threads
+    cv_not_empty.notify_all();  // Notify all waiting threads
+    cv_not_full.notify_all();   // Notify all waiting threads
 }
 
 template <typename T>

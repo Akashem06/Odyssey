@@ -24,7 +24,7 @@ class SensorDataAggregator {
         void process_data_task();
     
     public:
-        SensorDataAggregator(size_t num_sensors) : data_queue(num_sensors) {};
+        explicit SensorDataAggregator(size_t num_sensors) : data_queue(num_sensors), stop_flag(false) {};
 
         void add_sensor(Sensor* sensor);
 
