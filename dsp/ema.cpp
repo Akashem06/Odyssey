@@ -7,7 +7,7 @@ void EMA_LowPassFilter::update_alpha(float alpha) {
     if (alpha >= 1.0f) {
         alpha = 1.0f;
     } else if (alpha <= 0.0f) {
-        alpha = 1.0f;
+        alpha = 0.0f;
     }
     this->alpha = alpha;
 }
@@ -27,7 +27,7 @@ void EMA_HighPassFilter::update_beta(float beta) {
     if (beta >= 1.0f) {
         beta = 1.0f;
     } else if (beta <= 0.0f) {
-        beta = 1.0f;
+        beta = 0.0f;
     }
     this->beta = beta;
 }
